@@ -10,12 +10,12 @@
 {{ config(materialized='table') }}
 
 SELECT
-  u.id
+  u.id AS user_id
   , u.username
   , u.name__firstname
   , u.name__lastname
-  , c.id
-  , c.date
+  , c.id AS cart_id
+  , c.date AS cart_date
 FROM `sandbox-data-pipeline.fakestore_data.users` u
 JOIN `sandbox-data-pipeline.fakestore_data.carts` c
 ON u.id = c.user_id
