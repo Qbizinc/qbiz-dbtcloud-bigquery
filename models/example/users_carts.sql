@@ -9,16 +9,16 @@
 
 {{ config(materialized='table') }}
 
-with source_data as (
-
-    select 1 as id
-    union all
-    select null as id
-
-)
-
-select *
-from source_data
+SELECT
+  u.id
+  , u.username
+  , u.name__firstname
+  , u.name__lastname
+  , c.id
+  , c.date
+FROM `sandbox-data-pipeline.fakestore_data.users` u
+JOIN `sandbox-data-pipeline.fakestore_data.carts` c
+ON u.id = c.user_id
 
 /*
     Uncomment the line below to remove records with null `id` values
